@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import messagebox
 
 
-
 def generate_password(keyphrase, description=""):
     combined_input = keyphrase + description
     hashed = hashlib.sha256(combined_input.encode('utf-8')).hexdigest()
@@ -22,7 +21,9 @@ def show_password():
 
 # Create GUI with Tkinter
 window = tk.Tk()
-window.title("Offline Password Manager")
+window.title("Password Manager")
+window.minsize(800, 600)
+window.maxsize(800, 600)
 
 # Key phrase input
 tk.Label(window, text="Key Phrase:").grid(row=0, column=0)
