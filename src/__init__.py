@@ -19,24 +19,39 @@ def show_password():
         messagebox.showwarning("Input Error", "Please enter a key phrase")
 
 
-# Create GUI with Tkinter
+def show_info():
+    messagebox.showinfo("How to Use", "This app helps you manage passwords. "
+                                       "Enter a key phrase and an optional description, then click 'Generate Password'.")
+
 window = tk.Tk()
 window.title("Password Manager")
 window.minsize(800, 600)
 window.maxsize(800, 600)
 
-# Key phrase input
-tk.Label(window, text="Key Phrase:").grid(row=0, column=0)
-key_entry = tk.Entry(window)
-key_entry.grid(row=0, column=1)
+frame = tk.Frame(window)
+frame.grid(row=0, column=0, padx=20, pady=20)
 
-# Description input (optional)
-tk.Label(window, text="Description:").grid(row=1, column=0)
-desc_entry = tk.Entry(window)
-desc_entry.grid(row=1, column=1)
+window.grid_rowconfigure(0, weight=1)
+window.grid_columnconfigure(0, weight=1)
 
-# Generate Password Button
-generate_btn = tk.Button(window, text="Generate Password", command=show_password)
-generate_btn.grid(row=2, column=1)
+input_frame = tk.Frame(frame)
+input_frame.pack(pady=(0, 20))
+
+tk.Label(input_frame, text="Key Phrase:").grid(row=0, column=0, sticky="e", padx=5, pady=5)
+key_entry = tk.Entry(input_frame)
+key_entry.grid(row=0, column=1, padx=5, pady=5)
+
+tk.Label(input_frame, text="Description:").grid(row=1, column=0, sticky="e", padx=5, pady=5)
+desc_entry = tk.Entry(input_frame)
+desc_entry.grid(row=1, column=1, padx=5, pady=5)
+
+button_frame = tk.Frame(frame)
+button_frame.pack()
+
+generate_btn = tk.Button(button_frame, text="Generate Password", command=show_password)
+generate_btn.grid(row=0, column=0, pady=(10, 0))
+
+info_button = tk.Button(button_frame, text="INFO", command=show_info)
+info_button.grid(row=0, column=1, padx=10)
 
 window.mainloop()
